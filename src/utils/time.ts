@@ -1,7 +1,9 @@
+import moment from "moment";
+
 export const getDayOfYear = () => {
-  return 35;
+  return moment().dayOfYear();
 };
 
 export const getWeekOfYear = () => {
-  return 5;
+  return Math.floor(moment().dayOfYear() / 7);
 };

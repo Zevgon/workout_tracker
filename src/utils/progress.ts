@@ -41,6 +41,6 @@ export const setActivityTarget = (
   const day = getDayFromDate(date);
   allProgress[activity] = allProgress[activity] || {};
   allProgress[activity][day] = allProgress[activity][day] || {};
-  allProgress[activity][day].goal = target;
+  allProgress[activity][day].target = target;
   localStorage.setItem(PROGRESS_KEY, JSON.stringify(allProgress));
 };

@@ -7,10 +7,8 @@ import {
 import styled from "styled-components";
 import Navbar, { NavbarLink } from "./navbar/Navbar";
 import Calendar from "./routes/Calendar/Calendar";
-import {
-  ActivityProgress,
-  ProgressPage,
-} from "./routes/DailyProgress/DailyProgress";
+import { ActivityProgress } from "./routes/DailyProgress/ActivityProgress";
+import { ProgressPage } from "./routes/DailyProgress/DailyProgress";
 
 const Container = styled.div`
   width: 100%;
