@@ -1,4 +1,8 @@
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import styled from "styled-components";
+import Navbar, { NavbarLink } from "./navbar/Navbar";
+import Calendar from "./routes/Calendar/Calendar";
+import TodaysProgress from "./routes/TodaysProgress/TodaysProgress";
 
 const Container = styled.div`
   width: 100%;
@@ -6,25 +10,20 @@ const Container = styled.div`
   padding: 40px;
 `;
 
-const NavbarSC = styled.div`
-  width: 100%;
-  height: 68px;
-  background-color: white;
-  box-shadow: 0 10px 20px rgba(110, 110, 110, 0.3), 0 6px 6px rgba(0, 0, 0, 0.1);
-`;
-
-const Navbar = () => {
-  return <NavbarSC />;
-};
-
 const App = () => {
   return (
-    <>
-      <Navbar />
+    <Router>
+      <Navbar>
+        <NavbarLink to="/">Today's Progress</NavbarLink>
+        <NavbarLink to="/calendar">Calendar</NavbarLink>
+      </Navbar>
       <Container>
-        <h1>Woohooo</h1>
+        <Routes>
+          <Route path="/" index={true} element={<TodaysProgress />} />
+          <Route path="/calendar" element={<Calendar />} />
+        </Routes>
       </Container>
-    </>
+    </Router>
   );
 };
 
