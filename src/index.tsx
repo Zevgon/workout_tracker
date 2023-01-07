@@ -1,15 +1,9 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-import { createGlobalStyle } from "styled-components";
 import App from "./App";
+import GlobalStyle from "./GlobalStyle";
 import "./index.css";
 import reportWebVitals from "./reportWebVitals";
-
-const GlobalStyle = createGlobalStyle`
-  body {
-    background-color: rgb(48, 82, 140);
-  }
-`;
 
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
