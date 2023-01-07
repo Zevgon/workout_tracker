@@ -4,6 +4,7 @@ const IncrementButtonsContainer = styled.div`
   width: 100%;
   display: flex;
   justify-content: space-between;
+  column-gap: 4px;
 `;
 
 const IncrementButton = styled.button`

@@ -28,6 +28,11 @@ const Container = styled.div`
   width: 100%;
   display: flex;
   column-gap: 40px;
+
+  @media only screen and (max-width: 600px) {
+    flex-direction: column;
+    row-gap: 20px;
+  }
 `;
 
 export const ActivityProgress = () => {
