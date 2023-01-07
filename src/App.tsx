@@ -1,7 +1,12 @@
-import "./App.css";
+import styled from "styled-components";
 
-function App() {
-  return <div>Woohooo!</div>;
-}
+const Container = styled.div`
+  width: 100%;
+  height: 100%;
+`;
+
+const App = () => {
+  return <Container>Woohooo!</Container>;
+};
 
 export default App;
