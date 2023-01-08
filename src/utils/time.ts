@@ -5,5 +5,5 @@ export const getDayOfYear = () => {
 };
 
 export const getWeekOfYear = () => {
-  return Math.floor(moment().dayOfYear() / 7);
+  return Math.floor((moment().dayOfYear() - 1) / 7) + 1;
 };

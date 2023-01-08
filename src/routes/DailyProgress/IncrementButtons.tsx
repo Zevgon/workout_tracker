@@ -17,6 +17,7 @@ const IncrementButton = styled.button`
   font-size: 24px;
   background-color: #1899d6;
   border: none;
+  color: black;
 `;
 
 interface Props {
