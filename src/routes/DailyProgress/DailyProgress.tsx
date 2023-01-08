@@ -9,29 +9,30 @@ const ActivityProgressContainer = styled.div`
 `;
 
 const ActivitySelectorContainer = styled.div`
-  width: 100%;
-  display: flex;
   align-items: center;
-  justify-content: flex-start;
   column-gap: 40px;
+  display: flex;
+  justify-content: flex-start;
+  width: 100%;
 `;
 
 const ActivityChip = styled.button<{ selected: boolean }>`
-  font-size: 24px;
-  font-weight: 600;
   background-color: ${({ selected }) => (selected ? "#1899d6" : "white")};
+  border-radius: 100px;
   border: ${({ selected }) =>
     selected ? "2px solid white" : "2px solid #ccc"};
-  border-radius: 100px;
-  padding: 8px 16px;
+  color: black;
   cursor: pointer;
+  font-size: 24px;
+  font-weight: 600;
+  padding: 8px 16px;
 `;
 
 const Container = styled.div`
+  align-items: center;
   display: flex;
   flex-direction: column;
   row-gap: 32px;
-  align-items: center;
 `;
 
 const ActivitySelector = () => {

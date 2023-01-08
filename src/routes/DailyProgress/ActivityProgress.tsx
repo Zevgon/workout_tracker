@@ -1,4 +1,5 @@
 import { ChangeEventHandler, useCallback, useEffect, useState } from "react";
+import Confetti from "react-confetti";
 import { useMatch } from "react-router-dom";
 import styled from "styled-components";
 import {
@@ -10,24 +11,26 @@ import {
 import { getDayOfYear, getWeekOfYear } from "../../utils/time";
 import IncrementButtons from "./IncrementButtons";
 
+const CONFETTI_DURATION_MS = 6000;
+
 const InputField = styled.input`
-  padding: 3px 8px;
   display: flex;
   font-size: 32px;
+  padding: 3px 8px;
   width: 100%;
 `;
 
 const ProgressSection = styled.div`
-  width: 100%;
   display: flex;
   flex-direction: column;
   row-gap: 32px;
+  width: 100%;
 `;
 
 const Container = styled.div`
-  width: 100%;
-  display: flex;
   column-gap: 40px;
+  display: flex;
+  width: 100%;
 
   @media only screen and (max-width: 600px) {
     flex-direction: column;
@@ -39,6 +42,7 @@ export const ActivityProgress = () => {
   const activity = useMatch("/progress/:activity")!.params.activity!;
   const [numCompleted, setNumCompleted] = useState(0);
   const [target, setTarget] = useState(0);
+  const [showConfetti, setShowConfetti] = useState(false);
 
   const setNewTarget = useCallback(
     (newTarget: number) => {
@@ -51,9 +55,14 @@ export const ActivityProgress = () => {
   const setNewNumCompleted = useCallback(
     (newNumCompleted: number) => {
       setActivityProgress(activity, newNumCompleted);
-      setNumCompleted(newNumCompleted);
+      setNumCompleted((prevNumCompleted) => {
+        if (prevNumCompleted < target && newNumCompleted >= target) {
+          setShowConfetti(true);
+        }
+        return newNumCompleted;
+      });
     },
-    [activity]
+    [activity, target]
   );
 
   const handleNumCompletedChange: ChangeEventHandler<HTMLInputElement> =
@@ -91,8 +100,17 @@ export const ActivityProgress = () => {
     }
   }, [activity, setNewTarget]);
 
+  useEffect(() => {
+    if (showConfetti) {
+      setTimeout(() => {
+        setShowConfetti(false);
+      }, CONFETTI_DURATION_MS);
+    }
+  }, [showConfetti]);
+
   return (
     <Container>
+      {showConfetti && <Confetti />}
       <ProgressSection>
         <h1>Completed</h1>
         <InputField
