@@ -1,3 +1,4 @@
+import moment from "moment";
 import { ChangeEventHandler, useCallback, useEffect, useState } from "react";
 import Confetti from "react-confetti";
 import { useMatch } from "react-router-dom";
@@ -43,6 +44,8 @@ export const ActivityProgress = () => {
   const [numCompleted, setNumCompleted] = useState(0);
   const [target, setTarget] = useState(0);
   const [showConfetti, setShowConfetti] = useState(false);
+
+  const day = moment().format("MMM. D, yyyy");
 
   const setNewTarget = useCallback(
     (newTarget: number) => {
@@ -98,7 +101,7 @@ export const ActivityProgress = () => {
     } else if (activity === "pull-ups" && getActivityTarget(activity) === 0) {
       setNewTarget(getWeekOfYear());
     }
-  }, [activity, setNewTarget]);
+  }, [activity, setNewTarget, day]);
 
   useEffect(() => {
     if (showConfetti) {
