@@ -8,7 +8,7 @@ const getDayFromDate = (date: Date) => {
   return moment(date).format("YYYY-MM-DD");
 };
 
-export const getAllProgress = () => {
+const getAllProgress = () => {
   const progress = localStorage.getItem(PROGRESS_KEY) || "{}";
   return JSON.parse(progress);
 };
@@ -54,4 +54,8 @@ export const setActivityTarget = (
     target
   );
   localStorage.setItem(PROGRESS_KEY, JSON.stringify(allProgress));
+};
+
+export const TEST_ONLY = {
+  PROGRESS_KEY,
 };
