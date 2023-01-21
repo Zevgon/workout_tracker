@@ -1,7 +1,9 @@
+import moment from "moment";
+
 const PROGRESS_KEY = "zevgon:workout_tracker:progress";
 
 const getDayFromDate = (date: Date) => {
-  return `${date.getFullYear()}-${date.getMonth()}-${date.getDay()}`;
+  return moment(date).format("YYYY-MM-DD");
 };
 
 export const getAllProgress = () => {
