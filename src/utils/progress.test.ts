@@ -135,6 +135,10 @@ describe("progress", () => {
     expect(target).toBe(24);
     expect(completed).toBe(20);
   });
+
+  test("stuff", () => {
+    expect(true).toBe(false);
+  });
 });
 
 export {};
