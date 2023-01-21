@@ -28,9 +28,9 @@ const IncrementButtons = ({ onInc }: Props) => {
   return (
     <IncrementButtonsContainer>
       <IncrementButton onClick={() => onInc(1)}>+1</IncrementButton>
+      <IncrementButton onClick={() => onInc(2)}>+2</IncrementButton>
+      <IncrementButton onClick={() => onInc(5)}>+5</IncrementButton>
       <IncrementButton onClick={() => onInc(10)}>+10</IncrementButton>
-      <IncrementButton onClick={() => onInc(20)}>+20</IncrementButton>
-      <IncrementButton onClick={() => onInc(100)}>+100</IncrementButton>
     </IncrementButtonsContainer>
   );
 };
