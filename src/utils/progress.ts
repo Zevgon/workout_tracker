@@ -1,3 +1,5 @@
+import getValueForPath from "lodash.get";
+import setValueForPath from "lodash.set";
 import moment from "moment";
 
 const PROGRESS_KEY = "zevgon:workout_tracker:progress";
@@ -13,7 +15,11 @@ export const getAllProgress = () => {
 
 export const getActivityProgress = (activity: string, date = new Date()) => {
   const allProgress = getAllProgress();
-  return allProgress[activity]?.[getDayFromDate(date)]?.completed || 0;
+  return getValueForPath(
+    allProgress,
+    [getDayFromDate(date), activity, "completed"],
+    0 /* default */
+  );
 };
 
 export const setActivityProgress = (
@@ -23,15 +29,17 @@ export const setActivityProgress = (
 ) => {
   const allProgress = getAllProgress();
   const day = getDayFromDate(date);
-  allProgress[activity] = allProgress[activity] || {};
-  allProgress[activity][day] = allProgress[activity][day] || {};
-  allProgress[activity][day].completed = reps;
+  setValueForPath(allProgress, [day, activity, "completed"], reps);
   localStorage.setItem(PROGRESS_KEY, JSON.stringify(allProgress));
 };
 
 export const getActivityTarget = (activity: string, date = new Date()) => {
   const allProgress = getAllProgress();
-  return allProgress[activity]?.[getDayFromDate(date)]?.target || 0;
+  return getValueForPath(
+    allProgress,
+    [getDayFromDate(date), activity, "target"],
+    0 /* default */
+  );
 };
 
 export const setActivityTarget = (
@@ -40,9 +48,10 @@ export const setActivityTarget = (
   date = new Date()
 ) => {
   const allProgress = getAllProgress();
-  const day = getDayFromDate(date);
-  allProgress[activity] = allProgress[activity] || {};
-  allProgress[activity][day] = allProgress[activity][day] || {};
-  allProgress[activity][day].target = target;
+  setValueForPath(
+    allProgress,
+    [getDayFromDate(date), activity, "target"],
+    target
+  );
   localStorage.setItem(PROGRESS_KEY, JSON.stringify(allProgress));
 };
